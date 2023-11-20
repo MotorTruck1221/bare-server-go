@@ -1,7 +1,7 @@
 # Bare Server GO
 
 - This is a complete bare server written in GO that is compliant with the [TompHTTP Server Specifications](https://github.com/tomphttp/specifications)
-
+- This is used in conjunction with [Prism](https://github.com/ruby-network/prism) a frontend that focuses on being lightweight and extremely fast,
 ## Usage
 
 ### Prerequisites
