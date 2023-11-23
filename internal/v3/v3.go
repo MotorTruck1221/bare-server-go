@@ -1,7 +1,9 @@
 package v3
 
-import "fmt"
+import ( 
+    "fmt" 
+)
 
-func Handler() {
-    fmt.Println("v3")
+func Handler(method string) {
+    fmt.Println("V3, method: " + method)
 }
