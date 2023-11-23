@@ -8,8 +8,8 @@ import (
     "github.com/go-chi/cors"
 
     //imports from this project
-    "github.com/Ruby-Network/bare-go/utils"
-    "github.com/Ruby-Network/bare-go/v3"
+    "github.com/Ruby-Network/bare-go/internal/utils"
+    "github.com/Ruby-Network/bare-go/internal/v3"
 )
 
 func main() {
