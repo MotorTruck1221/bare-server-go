@@ -11,9 +11,14 @@
 ### Installation
 
 - Clone this repository
-- Run `go get` to install dependencies
-- Run `go build` to build the binary
-- Run `./bare-server-go` to start the server 
+- To build run:
+```bash
+make all
+```
+- To run:
+```bash
+./bare-server
+```
 
 ## Todo 
 
