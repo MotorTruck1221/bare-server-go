@@ -4,10 +4,17 @@ import (
     "net/http"
     "io/ioutil"
     "encoding/json"
+    "net/url"
+    "fmt"
 )
 
 func Handler(method string, userAgent string, w http.ResponseWriter, r *http.Request, headers http.Header) {
     xBareUrl := headers.Get("X-Bare-Url")
+    _, err := url.ParseRequestURI(xBareUrl)
+    if err != nil { 
+        fmt.Println("Invalid URL Ignoring", xBareUrl)
+        return
+    }
     client := &http.Client{}
     request, err := http.NewRequest(method, xBareUrl, nil)
     if err != nil { panic(err) }
