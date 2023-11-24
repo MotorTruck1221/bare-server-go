@@ -17,6 +17,9 @@ func main() {
     router.Use(middleware.Logger)
     router.Use(cors.Handler(cors.Options{
         AllowedOrigins: []string{"*"},
+        AllowedMethods: []string{"GET", "POST", "PUT", "DELETE", "OPTIONS"},
+        AllowedHeaders: []string{"*"},
+        MaxAge: 300,
     }))
 
     router.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
@@ -32,7 +35,9 @@ func main() {
 
     router.Handle("/v3/*", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
         method := string(r.Method)
-        v3.Handler(method)
+        userAgent := string(r.Header.Get("User-Agent"))
+        headers := r.Header
+        v3.Handler(method, userAgent, w, r, headers)
     }))
 
     fmt.Println("Server is running on port 8080")
