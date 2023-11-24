@@ -9,7 +9,6 @@ import (
 func Handler(method string, userAgent string, w http.ResponseWriter, r *http.Request, headers http.Header) {
     xBareUrl := headers.Get("X-Bare-Url")
     client := &http.Client{}
-    //the request needs to follow redirects
     request, err := http.NewRequest(method, xBareUrl, nil)
     if err != nil { panic(err) }
     request.Header.Set("User-Agent", userAgent)
