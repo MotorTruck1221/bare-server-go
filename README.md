@@ -20,6 +20,40 @@ make all
 ./bare-server
 ```
 
+#### Docker 
+
+- To build AND run:
+```bash
+make docker
+```
+
+- To JUST build:
+```bash
+make docker-build
+```
+
+- To JUST run:
+```bash
+make docker-run
+```
+
+#### Docker Compose
+
+- To build AND run:
+```bash
+make docker-compose
+```
+
+- To JUST build:
+```bash
+make docker-compose-build
+```
+
+- To JUST run:
+```bash
+make docker-compose-up
+```
+
 ## Todo 
 
 - [ ] V3 implementation

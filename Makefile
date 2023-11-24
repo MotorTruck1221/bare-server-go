@@ -14,6 +14,17 @@ download:
 	@echo "Downloading..."
 	@go get
 
+docker-build:
+	@echo "Building docker image..."
+	@docker build -t bare-server .
+
+docker-run:
+	@echo "Running docker image..."
+	@docker run -d -p 8080:8080 bare-server
+
+
+docker: docker-build docker-run
+
 docker-compose-build:
 	@echo "Building docker-compose..."
 	@docker compose build 
@@ -21,9 +32,5 @@ docker-compose-build:
 docker-compose-up:
 	@echo "Running docker-compose..."
 	@docker compose up -d
-
-docker-compose-down:
-	@echo "Stopping docker-compose..."
-	@docker compose down
 
 docker-compose: docker-compose-build docker-compose-up
