@@ -12,7 +12,7 @@ import (
     "github.com/Ruby-Network/bare-go/internal/v3"
 )
 
-func Init() {
+func Init(host string, port string, directory string) {
     router := chi.NewRouter()
     router.Use(middleware.Logger)
     router.Use(cors.Handler(cors.Options{
@@ -23,24 +23,25 @@ func Init() {
         MaxAge: 300,
     }))
 
-    router.Handle("/", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+    router.Handle(directory, http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
         e := utils.GetJson()
         w.Header().Set("Content-Type", "application/json")
         w.Write([]byte(e))
     }))
-    router.Handle("/health", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+    router.Handle(directory + "health", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
         e := `{"status": "ok"}`
         w.Header().Set("Content-Type", "application/json")
         w.Write([]byte(e))
     }))
 
-    router.Handle("/v3/*", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+    router.Handle(directory + "v3/*", http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
         method := string(r.Method)
         userAgent := string(r.Header.Get("User-Agent"))
         headers := r.Header
         v3.Handler(method, userAgent, w, r, headers)
     }))
 
-    fmt.Println("Server is running on port 8080")
-    http.ListenAndServe(":8080", router)
+    fmt.Println("Server listening on http://" + host + ":" + port + directory)
+    if (host == "0.0.0.0") { fmt.Println("Server also listening on http://localhost:" + port + directory) }
+    http.ListenAndServe(host + ":" + port, router)
 }

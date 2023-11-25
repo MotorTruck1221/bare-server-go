@@ -9,9 +9,9 @@ import (
 )
 
 var rootCmd = &cobra.Command{
-    Use:   "go-bare",
+    Use:   "bare-server",
     Short: "The CLI for the bare go project",
-    Long: `Go Bare is a TOMPHTTP Spec compliant server written in Go.`,
+    Long: `Bare Server (Go Bare) is a TOMPHTTP Spec compliant server written in Go.`,
 }
 
 func Init() {
