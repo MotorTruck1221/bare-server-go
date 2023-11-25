@@ -38,7 +38,7 @@ func calcMem() uint64 {
 }
 
 func GetJson() string {
-    e := `{
+    jsonResp := `{
         "versions": ["v3"],
         "language": "Go",
         "memoryUsage": ` + fmt.Sprint(calcMem()) + `,
@@ -51,5 +51,5 @@ func GetJson() string {
             "version": "v0.0.1"
         }
     }`
-    return e
+    return jsonResp
 }
