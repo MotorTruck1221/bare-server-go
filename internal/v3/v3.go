@@ -26,8 +26,9 @@ func Handler(method string, userAgent string, w http.ResponseWriter, r *http.Req
     if err != nil { panic(err) }
     bareHeaders, err := json.Marshal(response.Header)
     if err != nil { panic(err) }
-    w.Header().Set("X-Bare-Status", "200")
-    w.Header().Set("X-Bare-Status-Text", "Ok")
+    w.Header().Set("X-Bare-Status", response.Status)
+    stausText := http.StatusText(response.StatusCode)
+    w.Header().Set("X-Bare-Status-Text", stausText)
     w.Header().Set("X-Bare-Headers", string(bareHeaders))
     w.Write(body)
 }

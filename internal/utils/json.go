@@ -48,7 +48,7 @@ func GetJson() string {
             "email": "support@rubynetwork.tech",
             "website": "https://rubynetwork.tech",
             "repository": "https://github.com/ruby-network/bare-go",
-            "version": "v1.0.0"
+            "version": "v0.0.1"
         }
     }`
     return e
