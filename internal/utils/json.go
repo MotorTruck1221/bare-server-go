@@ -38,7 +38,7 @@ func calcMem() uint64 {
 }
 
 func GetJson() string {
-    e := `{
+    jsonResp := `{
         "versions": ["v3"],
         "language": "Go",
         "memoryUsage": ` + fmt.Sprint(calcMem()) + `,
@@ -48,8 +48,8 @@ func GetJson() string {
             "email": "support@rubynetwork.tech",
             "website": "https://rubynetwork.tech",
             "repository": "https://github.com/ruby-network/bare-go",
-            "version": "v1.0.0"
+            "version": "v0.0.1"
         }
     }`
-    return e
+    return jsonResp
 }
