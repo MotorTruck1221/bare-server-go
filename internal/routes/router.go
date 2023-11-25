@@ -12,7 +12,7 @@ import (
     "github.com/Ruby-Network/bare-go/internal/v3"
 )
 
-func Init(host string, port string, directory string) {
+func Router(directory string) *chi.Mux {
     router := chi.NewRouter()
     router.Use(middleware.Logger)
     router.Use(cors.Handler(cors.Options{
@@ -41,7 +41,12 @@ func Init(host string, port string, directory string) {
         v3.Handler(method, userAgent, w, r, headers)
     }))
 
-    fmt.Println("Server listening on http://" + host + ":" + port + directory)
-    if (host == "0.0.0.0") { fmt.Println("Server also listening on http://localhost:" + port + directory) }
+    return router
+}
+
+func Init(host string, port string, directory string) {
+    router := Router(directory)
+    fmt.Println("Listening on http://" + host + ":" + port + directory)
+    if host == "0.0.0.0" { fmt.Println("Also listening on http://localhost:" + port + directory) }
     http.ListenAndServe(host + ":" + port, router)
 }
