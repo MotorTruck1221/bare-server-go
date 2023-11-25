@@ -59,5 +59,6 @@ make docker-compose-up
 
 - [ ] V3 implementation
 - [ ] Websocket Support
+- [ ] CLI
 - [ ] Installable in your own project
 - [ ] Older versions of the spec
