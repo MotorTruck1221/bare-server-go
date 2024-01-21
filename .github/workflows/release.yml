@@ -1,0 +1,48 @@
+name: Add release binary
+on:
+  push:
+    tags:
+      - v*
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21.6
+      - name: Build 
+        run: make all
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: bare-server-release
+          path: bare-server 
+  upload:
+    runs-on: ubuntu-latest
+    needs: build 
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v3
+      - name: Download artifact 
+        uses: actions/download-artifact@v4
+        with:
+          name: bare-server-release
+          path: bare-server-go
+      - name: Upload to release 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ github.ref }} bare-server-go/bare-server
+  cleanup:
+    runs-on: ubuntu-latest
+    needs: upload
+    steps:
+      - name: Purge artifacts
+        uses: olpav/purge-artifacts-action@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          expire-in: 0
