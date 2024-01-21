@@ -10,6 +10,11 @@ import (
 
 func Handler(method string, userAgent string, w http.ResponseWriter, r *http.Request, headers http.Header) {
     xBareUrl := headers.Get("X-Bare-Url")
+    //detect if websocket
+    if headers.Get("Upgrade") == "websocket" {
+        fmt.Println("Websocket Detected Performing Handshake")
+        HandleWebsocket(w, r)
+    }
     _, err := url.ParseRequestURI(xBareUrl)
     if err != nil { 
         fmt.Println("Invalid URL Ignoring", xBareUrl)
@@ -26,8 +31,9 @@ func Handler(method string, userAgent string, w http.ResponseWriter, r *http.Req
     if err != nil { panic(err) }
     bareHeaders, err := json.Marshal(response.Header)
     if err != nil { panic(err) }
-    w.Header().Set("X-Bare-Status", "200")
-    w.Header().Set("X-Bare-Status-Text", "Ok")
+    // detect an upgrade to websocket
+    w.Header().Set("X-Bare-Status", fmt.Sprintf("%d", response.StatusCode))
+    w.Header().Set("X-Bare-Status-Text", response.Status)
     w.Header().Set("X-Bare-Headers", string(bareHeaders))
     w.Write(body)
 }

@@ -41,6 +41,6 @@ func main() {
         v3.Handler(method, userAgent, w, r, headers)
     }))
 
-    fmt.Println("Server is running on port 8080")
-    http.ListenAndServe(":8080", router)
+    fmt.Println("Server is running on port 8081")
+    http.ListenAndServe(":8081", router)
 }
