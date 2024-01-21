@@ -25,8 +25,6 @@ jobs:
     runs-on: ubuntu-latest
     needs: build 
     steps:
-      - name: Checkout 
-        uses: actions/checkout@v3
       - name: Download artifact 
         uses: actions/download-artifact@v4
         with:
@@ -36,10 +34,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          #get the current release 
-          release=$(curl -s https://api.github.com/repos/motortruck1221/bare-server-go/releases/latest | jq -r '.tag_name')
           # upload the artifact to the release
-          gh release upload $release bare-server-go
+          gh release upload {{ env.GITHUB_REF#refs/tags/ }} bare-server-go
   cleanup:
     runs-on: ubuntu-latest
     needs: upload
