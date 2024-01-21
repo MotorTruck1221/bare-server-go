@@ -39,7 +39,7 @@ jobs:
           #get the release event when in beta 
           release=$(gh release list --limit 1 | awk '{print $1}')
           # upload the artifact to the release
-          gh release upload $release bare-server-go
+          gh release upload $release bare-server-go --clobber
   cleanup:
     runs-on: ubuntu-latest
     needs: upload
