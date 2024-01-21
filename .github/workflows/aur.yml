@@ -16,11 +16,13 @@ jobs:
           go-version: 1.21.6
       - name: Build 
         run: make all
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
+      - name: Push to bin/
+        uses: EndBug/add-and-commit@v9
         with:
-          name: bare-server-aur
-          path: bin/bare-server-go 
+          push: origin HEAD:main
+          add: bin/
+          author_name: motortruck1221
+          author_email: motortruck1221@protonmail.com
   aur:
     needs: build
     name: Build & Upload to AUR 
@@ -28,11 +30,6 @@ jobs:
     steps:
       - name: Checkout 
         uses: actions/checkout@v3
-      - name: Download artifact 
-        uses: actions/download-artifact@v4
-        with:
-          name: bare-server-aur 
-          path: bare-server-go
       - name: Extract tag 
         id: extract_tag
         run: echo "::set-output name=version::$(echo ${GITHUB_REF#refs/tags/} | sed 's/^v//')"
