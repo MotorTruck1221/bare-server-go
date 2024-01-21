@@ -2,10 +2,11 @@ package v3
 
 import ( 
     "net/http"
-    "io/ioutil"
+    //"io/ioutil"
     "encoding/json"
     "net/url"
     "fmt"
+    "github.com/go-resty/resty/v2"
 )
 
 func Handler(method string, userAgent string, w http.ResponseWriter, r *http.Request, headers http.Header) {
@@ -20,20 +21,32 @@ func Handler(method string, userAgent string, w http.ResponseWriter, r *http.Req
         fmt.Println("Invalid URL Ignoring", xBareUrl)
         return
     }
-    client := &http.Client{}
-    request, err := http.NewRequest(method, xBareUrl, nil)
-    if err != nil { panic(err) }
-    request.Header.Set("User-Agent", userAgent)
-    response, err := client.Do(request)
-    if err != nil { panic(err) }
-    defer response.Body.Close()
-    body, err := ioutil.ReadAll(response.Body)
-    if err != nil { panic(err) }
-    bareHeaders, err := json.Marshal(response.Header)
-    if err != nil { panic(err) }
-    // detect an upgrade to websocket
-    w.Header().Set("X-Bare-Status", fmt.Sprintf("%d", response.StatusCode))
-    w.Header().Set("X-Bare-Status-Text", response.Status)
-    w.Header().Set("X-Bare-Headers", string(bareHeaders))
-    w.Write(body)
+    client := resty.New()
+    //client.SetHeaders(headers)
+    client.SetHeader("User-Agent", userAgent)
+    fmt.Println("Method", method)
+    response, err := client.R().
+    //create request based on method and x-bare-url 
+        SetResult(&resty.Response{}). // or SetResult(AuthSuccess{}).
+        Execute(method, xBareUrl)
+    
+    if err != nil {
+        fmt.Println(err)
+    }
+
+    jsonHeaders, err := json.Marshal(response.Header())
+
+    //if x-bare-pass-headers is set add it to jsonHeaders
+    if headers.Get("X-Bare-Pass-Headers") != "" {
+        fmt.Println("Passing Headers")
+        fmt.Println(headers.Get("X-Bare-Pass-Headers"))
+        fmt.Println(response.Header())
+        fmt.Println(jsonHeaders)
+        jsonHeaders = append(jsonHeaders, []byte(headers.Get("X-Bare-Pass-Headers"))...)
+    }
+
+    w.Header().Set("X-Bare-Status", fmt.Sprintf("%d", response.StatusCode()))
+    w.Header().Set("X-Bare-Status-Text", response.Status())
+    w.Header().Set("X-Bare-Headers", string(jsonHeaders))
+    w.Write(response.Body())
 }
