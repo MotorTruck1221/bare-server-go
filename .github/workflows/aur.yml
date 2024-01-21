@@ -50,7 +50,6 @@ jobs:
           cp -rf ./README.md ./bare-server-go/
           cp -rf ./PKGBUILD ./bare-server-go/
           cp -rf ./LICENSE ./bare-server-go/
-          cp -rf ./bare-server ./bare-server-go/
           cd bare-server-go
           git config user.email "${{ secrets.AUR_EMAIL }}"
           git config user.name "${{ secrets.AUR_USERNAME }}"
