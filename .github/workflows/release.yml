@@ -39,7 +39,7 @@ jobs:
           #get the current release 
           release=$(curl -s https://api.github.com/repos/motortruck1221/bare-server-go/releases/latest | jq -r '.tag_name')
           # upload the artifact to the release
-          gh release upload $release bare-server-go/bin/bare-server-go
+          gh release upload $release bare-server-go
   cleanup:
     runs-on: ubuntu-latest
     needs: upload
