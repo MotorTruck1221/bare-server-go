@@ -8,4 +8,4 @@ RUN make all
 
 EXPOSE 8080
 
-CMD "./bare-server start"
+CMD ["./bare-server", "start"]
