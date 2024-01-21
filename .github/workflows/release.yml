@@ -18,6 +18,5 @@ jobs:
           #get the release event when in beta 
           release=$(gh release list --limit 1 | awk '{print $1}')
           # upload the artifact to the release
-          ls
-          #gh release upload $release ./bare-server-go/bin/bare-server-go --clobber
+          gh release upload $release bin/bare-server-go --clobber
  
