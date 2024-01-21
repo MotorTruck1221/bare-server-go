@@ -58,7 +58,7 @@ jobs:
       - name: Validate PKGBUILD 
         uses: hapakaien/archlinux-package-action@v2
         with:
-          pkgbuild_path: bare-server-go 
+          path: bare-server-go 
           flags: ''
           namcap: false
           srcinfo: true
