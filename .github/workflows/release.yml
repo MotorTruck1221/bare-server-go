@@ -6,29 +6,12 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
-      - name: Setup Go
-        uses: actions/setup-go@v4
-        with:
-          go-version: 1.21.6
-      - name: Build 
-        run: make all
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: bare-server-release
-          path: bin/bare-server-go 
   upload:
     runs-on: ubuntu-latest
     needs: build 
     steps:
       - name: Checkout 
         uses: actions/checkout@v3
-      - name: Download artifact 
-        uses: actions/download-artifact@v4
         with:
           name: bare-server-release
           path: bare-server-go
@@ -39,7 +22,7 @@ jobs:
           #get the release event when in beta 
           release=$(gh release list --limit 1 | awk '{print $1}')
           # upload the artifact to the release
-          gh release upload $release bare-server-go --clobber
+          gh release upload $release ./bare-server-go/bin/bare-server-go --clobber
   cleanup:
     runs-on: ubuntu-latest
     needs: upload
