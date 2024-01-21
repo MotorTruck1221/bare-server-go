@@ -11,9 +11,6 @@ jobs:
     steps:
       - name: Checkout 
         uses: actions/checkout@v3
-        with:
-          name: bare-server-release
-          path: bare-server-go
       - name: Upload to release 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
