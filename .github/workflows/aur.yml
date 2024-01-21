@@ -61,6 +61,7 @@ jobs:
           updpkgsums: true
       - name: Push changes to AUR 
         run: |
+          cd bare-server-go
           git add .
           git commit -m "Update to ${{ steps.extract_tag.outputs.version }}"
           git push
