@@ -26,6 +26,8 @@ jobs:
     name: Build & Upload to AUR 
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout 
+        uses: actions/checkout@v3
       - name: Download artifact 
         uses: actions/download-artifact@v4
         with:
