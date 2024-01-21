@@ -48,8 +48,8 @@ jobs:
           cp -rf ./PKGBUILD ./bare-server-go/
           cp -rf ./LICENSE ./bare-server-go/
           cd bare-server-go
-          git config user.email "${{ secrets.AUR_EMAIL }}"
-          git config user.name "${{ secrets.AUR_USERNAME }}"
+          git config --global user.email "${{ secrets.AUR_EMAIL }}"
+          git config --global user.name "${{ secrets.AUR_USERNAME }}"
           cat PKGBUILD
       - name: Validate PKGBUILD 
         uses: hapakaien/archlinux-package-action@v2
