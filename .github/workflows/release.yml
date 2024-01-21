@@ -1,8 +1,10 @@
 name: Add release binary
 on:
-  push:
-    tags:
-      - v*
+  #when the aur.yml workflow is run and the build job is completed
+  workflow_run:
+    workflows: ["Aur build"]
+    types:
+      - completed
   workflow_dispatch:
 
 jobs:
