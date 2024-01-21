@@ -42,7 +42,7 @@ jobs:
           echo -e "Host aur.archlinux.org\n\tIdentityFile ~/.ssh/aur\n\tUser aur" > ~/.ssh/config
       - name: Pull changes from AUR 
         run: |
-          sed -i "s/pkgver=.*/pkgver=${{ steps.extract_version.outputs.version }}/" PKGBUILD
+          sed -i "s/pkgver=.*/pkgver=${{ steps.extract_tag.outputs.version }}/" PKGBUILD
           git clone aur@aur.archlinux.org:bare-server-go.git 
           cp -rf ./README.md ./bare-server-go/
           cp -rf ./PKGBUILD ./bare-server-go/
