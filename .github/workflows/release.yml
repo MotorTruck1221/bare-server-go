@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bare-server-release
-          path: bare-server 
+          path: bin/bare-server-go 
   upload:
     runs-on: ubuntu-latest
     needs: build 
