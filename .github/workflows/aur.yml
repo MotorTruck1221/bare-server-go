@@ -20,4 +20,49 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bare-server-aur
+          path: bare-server 
+  aur:
+    needs: build
+    name: Build & Upload to AUR 
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact 
+        uses: actions/download-artifact@v4
+        with:
+          name: bare-server-aur 
           path: bare-server
+      - name: Extract tag 
+        id: extract_tag
+        run: echo "::set-output name=version::$(echo ${GITHUB_REF#refs/tags/} | sed 's/^v//')"
+      - name: Setup SSH Key 
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.AUR_SSH_KEY }}" > ~/.ssh/aur 
+          chmod 600 ~/.ssh/aur 
+          ssh-keyscan aur.archlinux.org >> ~/.ssh/known_hosts
+          echo -e "Host aur.archlinux.org\n\tIdentityFile ~/.ssh/aur\n\tUser aur" > ~/.ssh/config
+      - name: Pull changes from AUR 
+        run: |
+          sed -i "s/pkgver=.*/pkgver=${{ steps.extract_version.outputs.version }}/" PKGBUILD
+          git clone aur@aur.archlinux.org:bare-server-go.git 
+          cp -rf ./README.md ./bare-server-go/
+          cp -rf ./PKGBUILD ./bare-server-go/
+          cp -rf ./LICENSE ./bare-server-go/
+          cp -rf ./bare-server ./bare-server-go/
+          cd bare-server-go
+          git config user.email "${{ secrets.AUR_EMAIL }}"
+          git config user.name "${{ secrets.AUR_USERNAME }}"
+          cat PKGBUILD
+      - name: Validate PKGBUILD 
+        uses: hapakaien/archlinux-package-action@v2
+        with:
+          pkgbuild_path: bare-server-go 
+          flags: ''
+          namcap: false
+          srcinfo: true
+          updpkgsums: true
+      - name: Push changes to AUR 
+        run: |
+          git add .
+          git commit -m "Update to ${{ steps.extract_tag.outputs.version }}"
+          git push
