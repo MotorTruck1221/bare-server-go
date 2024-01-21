@@ -18,7 +18,7 @@ make all
 ```
 - To run:
 ```bash
-./bare-go start
+./bare-server-go start
 ```
 
 ### For more examples of usage see the [exaples](./examples) directory

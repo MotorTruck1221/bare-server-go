@@ -1,4 +1,4 @@
-module github.com/ruby-network/bare-go
+module github.com/ruby-network/bare-server-go
 
 go 1.21.3
 
@@ -7,6 +7,7 @@ require (
 	github.com/go-chi/cors v1.2.1
 	github.com/go-resty/resty/v2 v2.11.0
 	github.com/gorilla/websocket v1.5.1
+	github.com/ruby-network/bare-go v0.0.1
 	github.com/spf13/cobra v1.8.0
 )
 

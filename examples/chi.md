@@ -14,7 +14,7 @@ import (
     "github.com/go-chi/chi/v5"
     "net/http"
     "fmt"
-    bare "github.com/ruby-network/bare-go/pkg/chi"
+    bare "github.com/ruby-network/bare-server-go/pkg/chi"
 )
 
 func main() {

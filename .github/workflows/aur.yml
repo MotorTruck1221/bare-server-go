@@ -20,7 +20,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: bare-server-aur
-          path: bare-server 
+          path: bin/bare-server-go 
   aur:
     needs: build
     name: Build & Upload to AUR 
@@ -32,7 +32,7 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: bare-server-aur 
-          path: bare-server
+          path: bare-server-go
       - name: Extract tag 
         id: extract_tag
         run: echo "::set-output name=version::$(echo ${GITHUB_REF#refs/tags/} | sed 's/^v//')"

@@ -7,8 +7,8 @@ import (
     "github.com/go-chi/cors"
 
     //imports from project
-    "github.com/ruby-network/bare-go/internal/utils"
-    "github.com/ruby-network/bare-go/internal/v3"
+    "github.com/ruby-network/bare-server-go/internal/utils"
+    "github.com/ruby-network/bare-server-go/internal/v3"
 )
 
 func ChiRouter(directory string, router *chi.Mux) *chi.Mux {

@@ -10,7 +10,7 @@
 
 - With GO:
 ```bash
-go install github.com/ruby-network/bare-go@latest
+go install github.com/ruby-network/bare-server-go@latest
 ```
 
 ## Usage

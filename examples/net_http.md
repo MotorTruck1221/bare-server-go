@@ -13,7 +13,7 @@ package main
 import (
     "net/http"
     "fmt"
-    bare "github.com/ruby-network/bare-go/pkg/http"
+    bare "github.com/ruby-network/bare-server-go/pkg/http"
 )
 
 func main() {

@@ -4,7 +4,7 @@ all: download build
 
 build:
 	@echo "Building..."
-	@go build -o bare-server main.go
+	@go build -o bin/bare-server-go main.go
 
 run:
 	@echo "Running..."
@@ -16,11 +16,11 @@ download:
 
 docker-build:
 	@echo "Building docker image..."
-	@docker build -t bare-server .
+	@docker build -t bare-server-go .
 
 docker-run:
 	@echo "Running docker image..."
-	@docker run -d -p 8080:8080 bare-server
+	@docker run -d -p 8080:8080 bare-server-go
 
 
 docker: docker-build docker-run
