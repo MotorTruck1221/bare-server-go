@@ -59,7 +59,7 @@ make docker-compose-up
 
 ## Todo 
 
-- [ ] V4 implementation
+- [ ] V4 implementation with [quic-go](https://github.com/quic-go/quic-go)
 - [ ] Websocket Support (V4)
 - [ ] V3 implementation
 - [ ] Websocket Support (V3) - Partial support
