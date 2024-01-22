@@ -4,7 +4,7 @@
 - [GO](https://golang.org/doc/install)
 
 > [!IMPORTANT]  
-> Currently, the CLI tool is only installable via GO itself.
+> Currently, the CLI tool is only installable via GO or the [AUR](https://aur.archlinux.org/packages/bare-server-go/)
 
 ## Installation
 
@@ -13,11 +13,16 @@
 go install github.com/ruby-network/bare-server-go@latest
 ```
 
+- AUR (yay):
+```bash
+yay -S bare-server-go
+```
+
 ## Usage
 
 For use with defaults run:
 ```bash
-bare-go start
+bare-server-go start
 ```
 
 ### Start Command Flags
