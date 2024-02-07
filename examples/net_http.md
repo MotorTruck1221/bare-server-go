@@ -33,7 +33,7 @@ go get && go run main.go
 And navigate to http://localhost:8080/bare/
 
 ## Having CORS issues?
-- Update your `main.go` to include the following:
+- Update your `main.go` to the following:
 ```go
 import (
     "net/http"
