@@ -1,0 +1,42 @@
+name: Build binaries
+on:
+  push:
+    tags:
+      - v*
+  workflow_dispatch:
+
+jobs:
+  aur-bin:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21.6
+      - name: Build (AUR Only)
+        run: make linux
+      - name: Push to bin/
+        uses: EndBug/add-and-commit@v9
+        with:
+          push: origin HEAD:main
+          add: bin/bare-server-go
+          author_name: motortruck1221
+          author_email: motortruck1221@protonmail.com 
+  binaries:
+    runs-on: ubuntu-latest
+    needs: aur-bin
+    steps:
+      - uses: actions/checkout@v3
+      - name: Setup Go
+        uses: actions/setup-go@v4
+        with:
+          go-version: 1.21.6
+      - name: Build (All) 
+        run: make all 
+      - name: Upload binaries 
+        uses: actions/upload-artifact@v2
+        with:
+          name: binaries
+          path: bin/
+          retention-days: 1

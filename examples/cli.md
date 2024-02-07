@@ -8,7 +8,7 @@
 
 ## Installation
 
-- From Source:
+- From Source (linux only):
 1.  ```bash
     git clone https://github.com/tomphttp/bare-server-go
     ```
