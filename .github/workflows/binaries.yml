@@ -45,8 +45,6 @@ jobs:
     steps:
       - name: Checkout 
         uses: actions/checkout@v3
-      - name: Get Workflow ID
-        id: get_workflow_id
       - name: Download binaries 
         uses: actions/download-artifact@v4
         with:
