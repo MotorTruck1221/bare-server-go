@@ -34,8 +34,36 @@ jobs:
       - name: Build (All) 
         run: make all 
       - name: Upload binaries 
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: binaries
           path: bin/
           retention-days: 1
+  download:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v3
+      - name: Get Workflow ID
+        id: get_workflow_id
+      - name: Download binaries 
+        uses: actions/download-artifact@v4
+        with:
+          #download the binaries from the binaries job 
+          name: binaries
+          path: bin/
+          # binaries worflow run id
+      - name: Upload to release 
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          #get the release event when in beta 
+          release=$(gh release list --limit 1 | awk '{print $1}')
+          # upload the artifact to the release
+          gh release upload $release bin/bare-server-go --clobber
+          gh release upload $release bin/bare-server-go-arm64 --clobber
+          gh release upload $release bin/bare-server-go-arm --clobber
+          gh release upload $release bin/bare-server-go-386 --clobber
+          gh release upload $release bin/bare-server-go.exe --clobber
+          gh release upload $release bin/bare-server-go-mac --clobber
+          gh release upload $release bin/bare-server-go-mac-arm64 --clobber 
