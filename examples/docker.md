@@ -8,13 +8,13 @@
 ### Build
 
 ```bash
-make docker-build
+docker build -t bare-server-go .
 ```
 
 ### Run
 
 ```bash
-make docker-run
+docker run -p 8080:8080 bare-server-go
 ```
 
 ### Stop
@@ -41,13 +41,19 @@ docker rm <container id>
 ### Build
 
 ```bash
-make docker-compose-build
+docker compose build
 ```
 
 ### Run
 
 ```bash
-make docker-compose-up
+docker compose up 
+```
+
+Or in the background
+
+```bash
+docker compose up -d
 ```
 
 ### Stop

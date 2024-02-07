@@ -1,12 +1,29 @@
 # Usage as a CLI tool
 
 ## Prerequisites 
-- [GO](https://golang.org/doc/install)
+- [GO](https://golang.org/doc/install) (when building from source/installing via GO)
 
 > [!IMPORTANT]  
 > Currently, the CLI tool is only installable via GO or the [AUR](https://aur.archlinux.org/packages/bare-server-go/)
 
 ## Installation
+
+- From Source:
+1.  ```bash
+    git clone https://github.com/tomphttp/bare-server-go
+    ```
+
+2.  ```bash
+    cd bare-server-go
+    ```
+
+3.  ```bash
+    make
+    ```
+
+4.  ```bash
+    ./bin/bare-server-go start
+    ```
 
 - With GO:
 ```bash
@@ -18,12 +35,15 @@ go install github.com/tomphttp/bare-server-go@latest
 yay -S bare-server-go
 ```
 
+- Or simply download the binary from the [releases](https://github.com/tomphttp/bare-server-go/releases)
+
 ## Usage
 
 For use with defaults run:
 ```bash
 bare-server-go start
 ```
+
 
 ### Start Command Flags
 
