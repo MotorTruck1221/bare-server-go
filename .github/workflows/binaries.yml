@@ -21,11 +21,11 @@ jobs:
         with:
           push: origin HEAD:main
           add: bin/bare-server-go
+          force: true
           author_name: motortruck1221
           author_email: motortruck1221@protonmail.com 
   binaries:
     runs-on: ubuntu-latest
-    needs: aur-bin
     steps:
       - uses: actions/checkout@v3
       - name: Setup Go
