@@ -1,8 +1,8 @@
 version: "3"
 
 services:
-  bare-go:
-    image: bare-go:latest
+  bare-server-go:
+    image: bare-server-go:latest
     build:
       context: .
       dockerfile: Dockerfile 

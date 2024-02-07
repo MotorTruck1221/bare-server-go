@@ -4,7 +4,7 @@ import (
     "github.com/spf13/cobra"
     
     //stuff from project
-    "github.com/ruby-network/bare-server-go/internal/routes"
+    "github.com/tomphttp/bare-server-go/internal/routes"
 )
 
 func init() {

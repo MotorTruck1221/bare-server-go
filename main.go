@@ -1,7 +1,7 @@
 package main
 
 import ( 
-    "github.com/ruby-network/bare-server-go/internal/cli"
+    "github.com/tomphttp/bare-server-go/internal/cli"
 )
 
 func main() { 
