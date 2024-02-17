@@ -1,0 +1,10 @@
+version: "3"
+
+services:
+  bare-server-go:
+    image: bare-server-go:latest
+    build:
+      context: .
+      dockerfile: Dockerfile 
+    ports:
+      - 8080:8080

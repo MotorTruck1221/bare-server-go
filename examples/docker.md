@@ -36,33 +36,55 @@ docker rm <container id>
 ```
 
 
-## Docker Compose
+## Docker Compose (Prebuilt and Build from Source)
 
-### Build
+### Build from Source
 
+- Clone the repository
 ```bash
-docker compose build
+git clone https://github.com/tomphttp/bare-server-go.git 
 ```
 
-### Run
-
+- Change to the directory
 ```bash
-docker compose up 
+cd bare-server-go
 ```
 
-Or in the background
-
+- Build the image
 ```bash
-docker compose up -d
+docker compose -f docker-compose.build.yml build
 ```
 
-### Stop
+- Run the image
+```bash
+docker compose -f docker-compose.build.yml up
+```
+
+### Run (Prebuilt)
+
+1. Aquire the docker-compose.yml file
+  - `wget` (Linux)
+  ```bash
+    wget https://raw.githubusercontent.com/tomphttp/bare-server-go/main/docker-compose.yml
+```
+  - `curl` (Linux)
+  ```bash
+    curl -O https://raw.githubusercontent.com/tomphttp/bare-server-go/main/docker-compose.yml
+```
+  - Download the file from the repository [here](https://github.com/tomphttp/bare-server-go/tree/main/docker-compose.yml)
+
+2. Run the image
+```bash
+docker compose up
+```
+
+### Stop (BOTH)
 
 ```bash
 docker compose down
 ```
 
-### Remove
+### Remove (BOTH)
 
 ```bash
 docker compose down --rmi all

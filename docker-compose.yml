@@ -1,10 +1,8 @@
-version: "3"
-
+version: '3'
 services:
   bare-server-go:
-    image: bare-server-go:latest
-    build:
-      context: .
-      dockerfile: Dockerfile 
+    restart: unless-stopped
+    image: ghcr.io/tomphttp/bare-server-go:latest
     ports:
-      - 8080:8080
+      # DO NOT CHANGE 8080 
+      - "yourport:8080"

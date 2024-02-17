@@ -4,7 +4,7 @@ WORKDIR /usr/src/app
 
 COPY . .
 
-RUN make all
+RUN make
 
 EXPOSE 8080
 
