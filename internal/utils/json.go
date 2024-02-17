@@ -3,32 +3,30 @@ package utils
 import (
     "runtime"
     "fmt"
+    "encoding/json"
 )
 
 type Maintainer struct {
-    email string
+    Email string `json:"email"`
     website string
 }
 
 type Project struct {
-    name string
-    description string
-    email string
-    website string
-    repository string
-    version string
+    Name string `json:"name"`
+    Description string `json:"description"`
+    Email string `json:"email"`
+    Website string `json:"website"`
+    Repository string `json:"repository"`
+    Version string `json:"version"`
 }
 
-type Versions struct {
-    versions []string
-}
 
 type Response struct {
-    versions Versions
-    language string
-    memoryUsage uint64
-    maintainer Maintainer
-    project Project
+    Versions []string `json:"versions"`
+    Language string `json:"language"`
+    MemoryUsage uint64 `json:"memoryUsage"`
+    Maintainer Maintainer `json:"maintainer"`
+    Project Project `json:"project"`
 }
 
 func calcMem() uint64 {
@@ -38,18 +36,11 @@ func calcMem() uint64 {
 }
 
 func GetJson() string {
-    e := `{
-        "versions": ["v3"],
-        "language": "Go",
-        "memoryUsage": ` + fmt.Sprint(calcMem()) + `,
-        "project": {
-            "name": "bare-go",
-            "description": "A Bare Server in GoLang",
-            "email": "support@rubynetwork.tech",
-            "website": "https://rubynetwork.tech",
-            "repository": "https://github.com/ruby-network/bare-go",
-            "version": "v1.0.0"
-        }
-    }`
-    return e
+    maintainer := Maintainer{"motortruck1221@protonmail.com", "https://motortruck1221.is-a.dev"}
+    project := Project{"Bare Server Go", "A TOMPHTTP complaint server written in Go", "", "", "https://github.com/tomphttp/bare-server-go", "v0.0.2"}
+    response := Response{[]string{"v3"}, "Go", calcMem(), maintainer, project}
+    //pretty print json 
+    json, err := json.MarshalIndent(response, "", "  ")
+    if err != nil { fmt.Println("Error in making json: ", err) }
+    return string(json)
 }
