@@ -2,7 +2,7 @@ version: '3'
 services:
   bare-server-go:
     restart: unless-stopped
-    image: motortruck1221/bare-server-go:latest
+    image: motortruck1221/bare-server-go:main
     ports:
       # DO NOT CHANGE 8080 
       - "8080:8080"
