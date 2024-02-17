@@ -2,7 +2,7 @@ version: '3'
 services:
   bare-server-go:
     restart: unless-stopped
-    image: ghcr.io/tomphttp/bare-server-go:main
+    image: motortruck1221/bare-server-go:latest
     ports:
       # DO NOT CHANGE 8080 
-      - "yourport:8080"
+      - "8080:8080"

@@ -28,12 +28,12 @@ docker run -p 8080:8080 bare-server-go
 
 1. Pull the image
 ```bash
-docker pull ghcr.io/tomphttp/bare-server-go:main
+docker pull motortruck1221/bare-server-go:latest
 ```
 
 2. Run the image
 ```bash
-docker run -p 8080:8080 ghcr.io/tomphttp/bare-server-go:main
+docker run -p 8080:8080 motortruck1221/bare-server-go:latest
 ```
 
 ### Stop (BOTH)
@@ -84,13 +84,13 @@ docker compose -f docker-compose.build.yml up
 1. Aquire the docker-compose.yml file
   - `wget` (Linux)
   ```bash
-    wget https://raw.githubusercontent.com/tomphttp/bare-server-go/main/docker-compose.yml
+    wget https://raw.githubusercontent.com/tomphttp/bare-server-go/latest/docker-compose.yml
 ```
   - `curl` (Linux)
   ```bash
-    curl -O https://raw.githubusercontent.com/tomphttp/bare-server-go/main/docker-compose.yml
+    curl -O https://raw.githubusercontent.com/tomphttp/bare-server-go/latest/docker-compose.yml
 ```
-  - Download the file from the repository [here](https://github.com/tomphttp/bare-server-go/tree/main/docker-compose.yml)
+  - Download the file from the repository [here](https://github.com/tomphttp/bare-server-go/tree/latest/docker-compose.yml)
 
 2. Run the image
 ```bash
