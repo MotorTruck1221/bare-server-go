@@ -16,7 +16,7 @@ jobs:
         with:
           go-version: 1.21.6
       - name: Build (AUR Only)
-        run: make linux
+        run: make linux && make compress
       - name: Push to bin/
         uses: EndBug/add-and-commit@v9
         with:
@@ -153,3 +153,10 @@ jobs:
           gh release upload $release bin/bare-server-go.exe --clobber
           gh release upload $release bin/bare-server-go-mac --clobber
           gh release upload $release bin/bare-server-go-mac-arm64 --clobber 
+          gh release upload $release bin/bare-server-go-compressed --clobber
+          gh release upload $release bin/bare-server-go-arm64-compressed --clobber
+          gh release upload $release bin/bare-server-go-arm-compressed --clobber
+          gh release upload $release bin/bare-server-go-386-compressed --clobber
+          gh release upload $release bin/bare-server-go.exe-compressed --clobber
+          gh release upload $release bin/bare-server-go-mac-compressed --clobber
+          gh release upload $release bin/bare-server-go-mac-arm64-compressed --clobber
