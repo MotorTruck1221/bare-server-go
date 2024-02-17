@@ -5,4 +5,4 @@ services:
     image: motortruck1221/bare-server-go:main
     ports:
       # DO NOT CHANGE 8080 
-      - "8080:8080"
+      - "yourporthere:8080"
