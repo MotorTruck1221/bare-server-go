@@ -25,19 +25,31 @@
     ./bin/bare-server-go start
     ```
 
+##### Optional 
+
+5. Compress the binary
+```bash
+make compress
+```
+
+---
 - With GO:
 ```bash
 go install github.com/tomphttp/bare-server-go@latest
 ```
 
-- AUR (yay):
+---
+- AUR (binary):
 ```bash
 yay -S bare-server-go
 ```
 
-- Or simply download the binary from the [releases](https://github.com/tomphttp/bare-server-go/releases)
-
-## Usage
+- AUR (build from source):
+```bash
+yay -S bare-server-go-git
+```
+---
+## CLI Usage
 
 For use with defaults run:
 ```bash
