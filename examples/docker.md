@@ -28,12 +28,12 @@ docker run -p 8080:8080 bare-server-go
 
 1. Pull the image
 ```bash
-docker pull ghcr.io/tomphttp/bare-server-go:latest
+docker pull ghcr.io/tomphttp/bare-server-go:main
 ```
 
 2. Run the image
 ```bash
-docker run -p 8080:8080 ghcr.io/tomphttp/bare-server-go:latest
+docker run -p 8080:8080 ghcr.io/tomphttp/bare-server-go:main
 ```
 
 ### Stop (BOTH)
