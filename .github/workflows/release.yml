@@ -67,7 +67,7 @@ jobs:
           git commit -m "Update to ${{ steps.extract_tag.outputs.version }}"
           git push
   aur-git:
-    needs: aur-binary
+    needs: aur-build
     name: Upload to AUR (git)
     runs-on: ubuntu-latest
     steps:
