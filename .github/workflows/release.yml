@@ -147,6 +147,8 @@ jobs:
           name: binaries
           path: bin/
           # binaries worflow run id
+      - name: Make binaries executable 
+        run: chmod +x bin/*
       - name: Upload to release 
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
