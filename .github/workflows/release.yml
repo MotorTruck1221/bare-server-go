@@ -53,7 +53,7 @@ jobs:
           git config --global user.name "${{ secrets.AUR_USERNAME }}"
           cat PKGBUILD
       - name: Validate PKGBUILD 
-        uses: motortruck1221/arch-linux-pkgbuild-package@v2.2.0
+        uses: motortruck1221/arch-linux-pkgbuild-package@v2.2.1
         with:
           path: bare-server-go 
           flags: ''
