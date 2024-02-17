@@ -1,4 +1,4 @@
-name: Docker Build (Github Container Registry)
+name: Docker Build
 on:
   push:
     tags:
