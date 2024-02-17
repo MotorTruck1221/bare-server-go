@@ -165,6 +165,6 @@ jobs:
           gh release upload $release bin/bare-server-go-arm64-compressed --clobber
           gh release upload $release bin/bare-server-go-arm-compressed --clobber
           gh release upload $release bin/bare-server-go-386-compressed --clobber
-          gh release upload $release bin/bare-server-go.exe-compressed --clobber
+          gh release upload $release bin/bare-server-go-compressed.exe --clobber
           gh release upload $release bin/bare-server-go-mac-compressed --clobber
           gh release upload $release bin/bare-server-go-mac-arm64-compressed --clobber
