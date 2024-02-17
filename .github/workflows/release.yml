@@ -24,9 +24,9 @@ jobs:
           add: bin/bare-server-go --force
           author_name: motortruck1221
           author_email: motortruck1221@protonmail.com
-  aur:
+  aur-binary:
     needs: aur-build
-    name: Upload to AUR 
+    name: Upload to AUR (binary) 
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 
@@ -63,6 +63,48 @@ jobs:
       - name: Push changes to AUR 
         run: |
           cd bare-server-go
+          git add .
+          git commit -m "Update to ${{ steps.extract_tag.outputs.version }}"
+          git push
+  aur-git:
+    needs: aur-binary
+    name: Upload to AUR (git)
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 
+        uses: actions/checkout@v3
+      - name: Extract tag 
+        id: extract_tag
+        run: echo "::set-output name=version::$(echo ${GITHUB_REF#refs/tags/} | sed 's/^v//')"
+      - name: Setup SSH Key 
+        run: |
+          mkdir -p ~/.ssh
+          echo "${{ secrets.AUR_SSH_KEY }}" > ~/.ssh/aur 
+          chmod 600 ~/.ssh/aur 
+          ssh-keyscan aur.archlinux.org >> ~/.ssh/known_hosts
+          echo -e "Host aur.archlinux.org\n\tIdentityFile ~/.ssh/aur\n\tUser aur" > ~/.ssh/config
+      - name: Pull changes from AUR 
+        run: |
+          sed -i "s/pkgver=.*/pkgver=${{ steps.extract_tag.outputs.version }}/" PKGBUILD
+          git clone aur@aur.archlinux.org:bare-server-go-git.git 
+          cp -rf ./README.md ./bare-server-go/
+          cp -rf ./PKGBUILD-git ./bare-server-go/PKGBUILD
+          cp -rf ./LICENSE ./bare-server-go/
+          cd bare-server-go-git
+          git config --global user.email "${{ secrets.AUR_EMAIL }}"
+          git config --global user.name "${{ secrets.AUR_USERNAME }}"
+          cat PKGBUILD
+      - name: Validate PKGBUILD 
+        uses: motortruck1221/arch-linux-pkgbuild-package@v2.2.1
+        with:
+          path: bare-server-go-git 
+          flags: ''
+          namcap: false
+          srcinfo: true
+          updpkgsums: true
+      - name: Push changes to AUR 
+        run: |
+          cd bare-server-go-git
           git add .
           git commit -m "Update to ${{ steps.extract_tag.outputs.version }}"
           git push
