@@ -1,8 +1,5 @@
 # Docker (Docker and Docker Compose)
 
-> [!IMPORTANT]  
-> Currently, when using Docker **YOU MUST** clone the repository.
-
 ## Docker
 
 ### Build
