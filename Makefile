@@ -1,6 +1,6 @@
 SHELL := bash
-.DEFAULT_GOAL := linux
-.PHONY: all clean linux windows mac run download clean
+.DEFAULT_GOAL := default
+.PHONY: all clean linux default windows mac run download clean
 
 all: clean linux windows mac
 
@@ -31,3 +31,7 @@ mac: download
 	@echo "Building for Mac..."
 	@GOOS=darwin GOARCH=amd64 go build -o bin/bare-server-go-mac main.go
 	@GOOS=darwin GOARCH=arm64 go build -o bin/bare-server-go-mac-arm64 main.go
+
+default: download 
+	@echo "Building for default OS..."
+	@go build -o bin/bare-server-go main.go
