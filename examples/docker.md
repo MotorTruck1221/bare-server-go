@@ -1,20 +1,42 @@
 # Docker (Docker and Docker Compose)
 
-## Docker
+## Docker (Prebuilt, and from Source)
 
-### Build
+### Build from Source
 
+- Clone the repository
+```bash
+git clone https://github.com/tomphttp/bare-server-go.git 
+```
+
+- Change to the directory
+```bash
+cd bare-server-go
+```
+
+- Build the image
 ```bash
 docker build -t bare-server-go .
 ```
 
-### Run
-
+- Run the image
 ```bash
 docker run -p 8080:8080 bare-server-go
 ```
 
-### Stop
+### Run (Prebuilt)
+
+1. Pull the image
+```bash
+docker pull ghcr.io/tomphttp/bare-server-go:latest
+```
+
+2. Run the image
+```bash
+docker run -p 8080:8080 ghcr.io/tomphttp/bare-server-go:latest
+```
+
+### Stop (BOTH)
 
 To stop your going to have to get the container id and then stop it.
 
@@ -23,7 +45,7 @@ docker ps
 docker stop <container id>
 ```
 
-### Remove
+### Remove (BOTH)
 
 To remove your going to have to get the container id and then remove it.
 
