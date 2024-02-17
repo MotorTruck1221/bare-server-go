@@ -69,12 +69,16 @@ func HandleWebsocket(w http.ResponseWriter, r *http.Request) {
 	}
 	// fmt.Println(headers)
 
-	remoteConn, _, err := dialer.Dial(
+	remoteConn, resp, err := dialer.Dial(
 		clientHandshake.Remote,
 		headers,
 	)
 	if err != nil {
-		panic(err)
+        if err == websocket.ErrBadHandshake {
+            fmt.Println("Bad Handshake", resp.StatusCode)
+            fmt.Println("Response Status", resp.Status)
+            fmt.Println(headers)
+        }
 	}
 	fmt.Println("Connected to remote server", remoteConn.RemoteAddr())
 	fmt.Println("Sending response to client")
