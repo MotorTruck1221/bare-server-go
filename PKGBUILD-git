@@ -10,7 +10,7 @@ license=('GPL3')
 depends=('make' 'go' 'upx')
 makedepends=('git')
 provides=('bare-server-go')
-license=('AGPL3')
+license=('GPL3')
 conflicts=('bare-server-go')
 url="https://github.com/tomphttp/bare-server-go"
 source=("git+$url")
@@ -18,5 +18,6 @@ sha256sums=('SKIP')
 package() {
     cd "${srcdir}/bare-server-go"
     make default
+    make compress
     install -Dm755 "${srcdir}/bare-server-go/bin/bare-server-go" "${pkgdir}/usr/bin/bare-server-go"
 }
