@@ -18,7 +18,7 @@ run:
 
 linux: download
 	@echo "Building for Linux..."
-	@go build -o bin/bare-server-go main.go
+	@go build -o bin/bare-server-go -ldflags "-s -w" main.go
 	@GOOS=linux GOARCH=arm go build -o bin/bare-server-go-arm -ldflags "-s -w" main.go
 	@GOOS=linux GOARCH=arm64 go build -o bin/bare-server-go-arm64 -ldflags "-s -w" main.go
 	@GOOS=linux GOARCH=386 go build -o bin/bare-server-go-386 -ldflags "-s -w" main.go
