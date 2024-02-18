@@ -13,6 +13,7 @@ package main
 import (
     "net/http"
     "fmt"
+    "github.com/gorilla/mux"
     bare "github.com/tomphttp/bare-server-go/pkg/gorilla"
 )
 
@@ -38,6 +39,7 @@ And navigate to http://localhost:8080/bare/
 import (
     "net/http"
     "fmt"
+    "github.com/gorilla/mux"
     bare "github.com/ruby-network/bare-go/pkg/gorilla"
     "github.com/rs/cors"
 )
